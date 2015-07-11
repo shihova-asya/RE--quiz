@@ -12,8 +12,33 @@
     font-size: 107%; 
    }
   </style>
+  <script type="text/javascript">
+  function startTimer() {
+    var my_timer = document.getElementById("my_timer");
+    var time = my_timer.innerHTML;
+    var arr = time.split(":");
+    var h = arr[0];
+    var m = arr[1];
+    var s = arr[2];
+    if (s == 60) {
+      if (m == 60) {
+        h++;
+        m = 0;
+        if (h < 10) h = "0" + h;
+      }
+      m++;
+      if (m < 10) m = "0" + m;
+      s = 0;
+    }
+    else s++;
+    if (s < 10) s = "0" + s;
+    document.getElementById("my_timer").innerHTML = h+":"+m+":"+s;
+    setTimeout(startTimer, 1000);
+  }
+</script>
 </head>
-<body bgcolor="#FFDEAD">
+<body bgcolor="#FFDEAD" onload="startTimer()">
+  <span id="my_timer" style="color: #8B0000; font-size: 150%;">00:00:00</span><br>
   <h1>Правила игры просты - ответьте на пять вопросов, касающихся разных статей бюджета Российской Империи (только расходы) в 
     1913 году.</h1>
   <form name="questions" method="get" action="result.php">
