@@ -38,36 +38,106 @@
 </script>
 </head>
 <body bgcolor="#FFDEAD" onload="startTimer()">
-  <span id="my_timer" style="color: #8B0000; font-size: 150%;">00:00:00</span><br>
-  <h1>Правила игры просты - ответьте на пять вопросов, касающихся разных статей бюджета Российской Империи (только расходы) в 
-    1913 году.</h1>
-  <form name="questions" method="get" action="result.php">
-  <b>Сколько рублей получила Российская Империя в 1912 году на акцизах с табака?</b><br> 
+  <?php
+  $count = $_GET['count'];
+  if ($_GET['first_answer'] == '' and $_GET['second_answer'] == '' and $_GET['third_answer']
+    == '' and $_GET['forth_answer'] == '' and $_GET['fifth_answer'] == '') {
+     $count = 0;
+  echo '<form name="question1" method="get">
+    <b>Сколько рублей получила Российская Империя в 1912 году на акцизах с табака?</b><br> 
     <input type="radio" name="first_answer" value="false"> 5700000<br>
     <input type="radio" name="first_answer" value="true"> 61000000<br>
     <input type="radio" name="first_answer" value="false"> 130000<br>
     <input type="radio" name="first_answer" value="false"> 440000000<br>
-  <b>Каковы были подымные подати и сборы?</b><br> 
+    <input type="hidden" name="count" value="'.$count.'">
+    <input type="submit" value="Подтвердите свой выбор" style="font-size: 107%; color: #CD5555">
+    </form> ';
+    }  
+    if ($_GET['first_answer'] != '') {      
+      if ($_GET['first_answer'] == 'true') {
+        echo 'Первый вопрос - правильно! :) <br><br> ' ;
+        $count++;
+      } else {
+        echo 'Первый вопрос - неправильно! :( <br><br> ' ;
+        }
+      echo '
+    <form name="question2" method="get">
+    <b>Каковы были подымные подати и сборы?</b><br> 
     <input type="radio" name="second_answer" value="false"> 5820322<br>
     <input type="radio" name="second_answer" value="false"> 3850222<br>
     <input type="radio" name="second_answer" value="false"> 852322<br>
     <input type="radio" name="second_answer" value="true"> 2850322<br>
-  <b>А каков был сахарный доход?</b><br> 
+    <input type="hidden" name="count" value="'.$count.'">
+    <input type="submit" value="Подтвердите свой выбор" style="font-size: 107%; color: #CD5555">
+    </form> ' ;
+    }
+    if ($_GET['second_answer'] != '') {      
+      if ($_GET['second_answer'] == 'true') {
+        echo 'Второй вопрос - правильно! :) <br><br> ' ;
+        $count++;
+      } else {
+        echo 'Второй вопрос - неправильно! :( <br><br> ' ;
+        }
+      echo '
+    <form name="question3" method="get">
+    <b>А каков был сахарный доход?</b><br> 
     <input type="radio" name="third_answer" value="true"> 128430000<br>
     <input type="radio" name="third_answer" value="false"> 12843000<br>
     <input type="radio" name="third_answer" value="false"> 1128430000<br>
     <input type="radio" name="third_answer" value="false"> 0<br>
-  <b>Суммарный доход от всех пошлин?</b><br> 
+    <input type="hidden" name="count" value="'.$count.'">
+    <input type="submit" value="Подтвердите свой выбор" style="font-size: 107%; color: #CD5555">
+    </form> ' ;
+    }
+    if ($_GET['third_answer'] != '') {      
+      if ($_GET['third_answer'] == 'true') {
+        echo 'Третий вопрос - правильно! :) <br><br> ' ;
+        $count++;
+      } else {
+        echo 'Третий вопрос - неправильно! :( <br><br> ' ;
+        }
+      echo '
+    <form name="question4" method="get">
+    <b>Суммарный доход от всех пошлин?</b><br> 
     <input type="radio" name="forth_answer" value="false"> 11847376<br>
     <input type="radio" name="forth_answer" value="true"> 191847376<br>
     <input type="radio" name="forth_answer" value="false"> 1991847376<br>
     <input type="radio" name="forth_answer" value="false"> 19991847376<br>
-  <b>А чем  может похвастаться Главное Интендантское Управление?</b><br> 
+    <input type="hidden" name="count" value="'.$count.'">
+    <input type="submit" value="Подтвердите свой выбор" style="font-size: 107%; color: #CD5555">
+    </form> ' ;
+    }
+    if ($_GET['forth_answer'] != '') {      
+      if ($_GET['forth_answer'] == 'true') {
+        echo 'Четвёртый вопрос - правильно! :) <br><br> ' ;
+        $count++;
+      } else {
+        echo 'Четвёртый вопрос - неправильно! :( <br><br> ' ;
+        }
+      echo '
+    <form name="question5" method="get">
+    <b>А чем  может похвастаться Главное Интендантское Управление?</b><br> 
     <input type="radio" name="fifth_answer" value="false"> 17500<br>
     <input type="radio" name="fifth_answer" value="false"> 137500<br>
     <input type="radio" name="fifth_answer" value="true"> 1337500<br>
     <input type="radio" name="fifth_answer" value="false"> 13337500<br>
+    <input type="hidden" name="count" value="'.$count.'">
     <input type="submit" value="Подтвердите свой выбор" style="font-size: 107%; color: #CD5555">
-  </form>
+    </form> ' ;
+    }
+    if ($_GET['fifth_answer'] != '') {
+       if ($_GET['fifth_answer'] == 'true') {
+        echo 'Пятый вопрос - правильно! :) <br><br> ' ;
+        $count++;
+      } else {
+        echo 'Пятый вопрос - неправильно! :( <br><br> ' ;
+        }
+       echo '
+    <form name="finish" method="get" action="result.php">
+    <input type="hidden" name="count" value="'.$count.'">
+    <input type="submit" value="Посмотреть результаты" style="font-size: 107%; color: #CD5555">
+    </form> ' ;
+    }
+  ?>
 </body>
 </html>
