@@ -6,6 +6,12 @@
 <body bgcolor="#87CEFF">
 <?php
   echo 'Количество правильных ответов: ';
+  $count = $_GET['count'];
+  echo $count.'  ';
+  echo 'Время (в секундах): ';
+  $all_used_time = $_GET['all_used_time'];
+  echo $all_used_time;
+  /*
   $count = 0; 
   if ($_GET['first_answer'] == 'true')
     $count++; 
@@ -17,7 +23,7 @@
     $count++;
   if ($_GET['fifth_answer'] == 'true')
     $count++;
-  echo $count;
+  */
 ?>
 <br><br><a href="start.php">Ещё разок?</a>
 </body>
