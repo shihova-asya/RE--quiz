@@ -81,41 +81,6 @@
     echo '<input type="submit" style="font-size: 107%; color: #CD5555" value="Посмотреть
 результаты"></form>';
     }
-  
-  /*
-  $quest[0] = rand(1, $id);
-  $quest[1] = rand(1, $id);
-  $quest[2] = rand(1, $id);
-  $quest[3] = rand(1, $id);
-  $quest[4] = rand(1, $id);
-  echo '<form name="questions" method="get" action="result.php">';
-  for ($idx = 0; $idx < 5; $idx++) {
-    echo "<b>".$text[$quest[$idx]]." </b><br> \n"; // Название вопроса
-    // Потом четырежды выводим что-то вроде этого - <input type="radio" name="first_answer" value="false"> 5700000<br>
-    $true_ans = rand(1, 4);
-    for ($idx2 = 1; $idx2 < 5; $idx2++) {
-      $number_of_answer = "first";
-      if ($idx == 1)
-        $number_of_answer = "second";
-      if ($idx == 2)
-        $number_of_answer = "third";
-      if ($idx == 3)
-        $number_of_answer = "forth";
-      if ($idx == 4)
-        $number_of_answer = "fifth";
-      $value_of_truth = "false";
-      if ($idx2 == $true_ans) {
-        $value_of_truth = "true";
-        $value_of_number = $answer[$quest[$idx]];
-      } else {
-        $value_of_number = rand(1, $id);
-        }
-      echo '<input type="radio" name="'.$number_of_answer.'_answer" value="'.$value_of_truth.'"> '.$value_of_number.' <br> ';
-    }
-  }
-  echo '<input type="submit" style="font-size: 107%; color: #CD5555" value="Подтвердите свой выбор">
-  </form>';
-  */
 ?>
 </body>
 </html>
