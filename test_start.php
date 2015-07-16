@@ -13,6 +13,7 @@
    }
   </style>
   <script type="text/javascript">
+  var used_time = 0;
   function startTimer() {
     var my_timer = document.getElementById("my_timer");
     var time = my_timer.innerHTML;
@@ -32,27 +33,32 @@
     }
     else  s++;
     if (s < 10) s = "0" + s;
-    var used_time = Number(h)*3600 + Number(m)*60 + Number(s);
+    used_time = Number(h)*3600 + Number(m)*60 + Number(s);
     document.getElementById("my_timer").innerHTML = h+":"+m+":"+s;
-    if (Number(s) % 5 == 1) {
+    setTimeout(startTimer, 1000);    
+  }
+    function Send_time(truth) {
       if(document.getElementById('question1') != null) {
+        document.getElementById('question1').innerHTML +='<input type="hidden" name="first_answer" value="' + truth + '">';
         document.getElementById('question1').innerHTML += '<input type="hidden" name="used_time" value="' + used_time +'">';
       }
       if(document.getElementById('question2') != null) {
+        document.getElementById('question2').innerHTML +='<input type="hidden" name="second_answer" value="' + truth + '">';
         document.getElementById('question2').innerHTML += '<input type="hidden" name="used_time" value="' + used_time +'">';
       }
       if(document.getElementById('question3') != null) {
+        document.getElementById('question3').innerHTML +='<input type="hidden" name="third_answer" value="' + truth + '">';
         document.getElementById('question3').innerHTML += '<input type="hidden" name="used_time" value="' + used_time +'">';
       }
       if(document.getElementById('question4') != null) {
+        document.getElementById('question4').innerHTML +='<input type="hidden" name="forth_answer" value="' + truth + '">';
         document.getElementById('question4').innerHTML += '<input type="hidden" name="used_time" value="' + used_time +'">';
       }
       if(document.getElementById('question5') != null) {
+        document.getElementById('question5').innerHTML +='<input type="hidden" name="fifth_answer" value="' + truth + '">';
         document.getElementById('question5').innerHTML += '<input type="hidden" name="used_time" value="' + used_time +'">';
       }
     }
-    setTimeout(startTimer, 1000);    
-  }
 </script>
 </head>
 <body bgcolor="#FFDEAD" onload="startTimer()">
@@ -69,10 +75,10 @@
      $count = 0;
   echo '<form id="question1" method="get">
     <b>Сколько рублей получила Российская Империя в 1912 году на акцизах с табака?</b><br> 
-    <input type="radio" name="first_answer" value="false"> 5700000<br>
-    <input type="radio" name="first_answer" value="true"> 61000000<br>
-    <input type="radio" name="first_answer" value="false"> 130000<br>
-    <input type="radio" name="first_answer" value="false"> 440000000<br>
+    <input type="radio" name="first_answer" onclick=Send_time("false")> 5700000<br>
+    <input type="radio" name="first_answer" onclick=Send_time("true")> 61000000<br>
+    <input type="radio" name="first_answer" onclick=Send_time("false")> 130000<br>
+    <input type="radio" name="first_answer" onclick=Send_time("false")> 440000000<br>
     <input type="hidden" name="count" value="'.$count.'">
     <input type="hidden" name="all_used_time" value="'.$all_used_time.'">
     <input type="submit" value="Подтвердите свой выбор" style="font-size: 107%; color: #CD5555">
@@ -84,10 +90,10 @@
       echo '
     <form id="question2" method="get">
     <b>Каковы были подымные подати и сборы?</b><br> 
-    <input type="radio" name="second_answer" value="false"> 5820322<br>
-    <input type="radio" name="second_answer" value="false"> 3850222<br>
-    <input type="radio" name="second_answer" value="false"> 852322<br>
-    <input type="radio" name="second_answer" value="true"> 2850322<br>
+    <input type="radio" name="second_answer" onclick=Send_time("false")> 5820322<br>
+    <input type="radio" name="second_answer" onclick=Send_time("false")> 3850222<br>
+    <input type="radio" name="second_answer" onclick=Send_time("false")> 852322<br>
+    <input type="radio" name="second_answer" onclick=Send_time("true")> 2850322<br>
     <input type="hidden" name="count" value="'.$count.'">
     <input type="hidden" name="all_used_time" value="'.$all_used_time.'">
     <input type="submit" value="Подтвердите свой выбор" style="font-size: 107%; color: #CD5555">
@@ -99,10 +105,10 @@
       echo '
     <form id="question3" method="get">
     <b>А каков был сахарный доход?</b><br> 
-    <input type="radio" name="third_answer" value="true"> 128430000<br>
-    <input type="radio" name="third_answer" value="false"> 12843000<br>
-    <input type="radio" name="third_answer" value="false"> 1128430000<br>
-    <input type="radio" name="third_answer" value="false"> 0<br>
+    <input type="radio" name="third_answer" onclick=Send_time("true")> 128430000<br>
+    <input type="radio" name="third_answer" onclick=Send_time("false")> 12843000<br>
+    <input type="radio" name="third_answer" onclick=Send_time("false")> 1128430000<br>
+    <input type="radio" name="third_answer" onclick=Send_time("false")> 0<br>
     <input type="hidden" name="count" value="'.$count.'">
     <input type="hidden" name="all_used_time" value="'.$all_used_time.'">
     <input type="submit" value="Подтвердите свой выбор" style="font-size: 107%; color: #CD5555">
@@ -114,10 +120,10 @@
       echo '
     <form id="question4" method="get">
     <b>Суммарный доход от всех пошлин?</b><br> 
-    <input type="radio" name="forth_answer" value="false"> 11847376<br>
-    <input type="radio" name="forth_answer" value="true"> 191847376<br>
-    <input type="radio" name="forth_answer" value="false"> 1991847376<br>
-    <input type="radio" name="forth_answer" value="false"> 19991847376<br>
+    <input type="radio" name="forth_answer" onclick=Send_time("false")> 11847376<br>
+    <input type="radio" name="forth_answer" onclick=Send_time("true")> 191847376<br>
+    <input type="radio" name="forth_answer" onclick=Send_time("false")> 1991847376<br>
+    <input type="radio" name="forth_answer" onclick=Send_time("false")> 19991847376<br>
     <input type="hidden" name="count" value="'.$count.'">
     <input type="hidden" name="all_used_time" value="'.$all_used_time.'">
     <input type="submit" value="Подтвердите свой выбор" style="font-size: 107%; color: #CD5555">
@@ -129,10 +135,10 @@
       echo '
     <form id="question5" method="get">
     <b>А чем  может похвастаться Главное Интендантское Управление?</b><br> 
-    <input type="radio" name="fifth_answer" value="false"> 17500<br>
-    <input type="radio" name="fifth_answer" value="false"> 137500<br>
-    <input type="radio" name="fifth_answer" value="true"> 1337500<br>
-    <input type="radio" name="fifth_answer" value="false"> 13337500<br>
+    <input type="radio" name="fifth_answer" onclick=Send_time("false")> 17500<br>
+    <input type="radio" name="fifth_answer" onclick=Send_time("false")> 137500<br>
+    <input type="radio" name="fifth_answer" onclick=Send_time("true")> 1337500<br>
+    <input type="radio" name="fifth_answer" onclick=Send_time("false")> 13337500<br>
     <input type="hidden" name="count" value="'.$count.'">
     <input type="hidden" name="all_used_time" value="'.$all_used_time.'">
     <input type="submit" value="Подтвердите свой выбор" style="font-size: 107%; color: #CD5555">
