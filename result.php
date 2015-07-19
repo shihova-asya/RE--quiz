@@ -7,10 +7,10 @@
 <?php
   echo 'Количество правильных ответов: ';
   $count = $_GET['count'];
-  echo $count.'  ';
-  //echo 'Время (в секундах): ';
-  //$all_used_time = $_GET['all_used_time'];
-  //echo $all_used_time;
+  echo $count.' , ';
+  $all_used_time = $_GET['all_used_time'];
+  echo 'время (в секундах): ';
+  echo $all_used_time;  
 ?>
 <br><br><a href="start.php">Ещё разок?</a>
 </body>
