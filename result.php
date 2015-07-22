@@ -22,32 +22,46 @@
   <script src="http://d3js.org/d3.v3.min.js"></script>
   <svg width="600" height="600"></svg>
   <script>
-  var colors = ["#000000", "#87CEFA", "#98FB98", "#87CEFA", "#98FB98", "#87CEFA", "#98FB98"];
+  var colors = ["#87CEFA", "#98FB98", "#87CEFA", "#98FB98", "#87CEFA", "#98FB98"];
   var count = <?php echo $count ?> ;
   
-  for (var index = 6; index > 0; --index) {
+  for (var index = 0; index < 6; ++index) {
     var two_pi = 2 * Math.PI;
-    var width = index * 100,
-      height = index * 100,
+    var width = (6 - index) * 100,
+      height = (6 - index) * 100,
       outerRadius = width / 2,
       innerRadius = 0;
   
-    if (6 - count == index) {
+    if (count == index) {
       colors[index] = "red";
     }
    
-    d3.select("svg").append("g")
+    var circle = d3.select("svg").append("g")
       .attr("transform", "translate(" + 300 + "," + 300 + ")")
     .selectAll("path")
       .data([0])
       .enter()
-      .append("path")
+      
+      circle.append("path")
         .attr("d", d3.svg.arc()
           .outerRadius(outerRadius)
           .innerRadius(innerRadius)
           .startAngle(function(d) { return d; })
           .endAngle(function(d) { return d + two_pi; }))
-        .style("fill", colors[index])   
+        .style("fill", colors[index]) 
+    if (index != 5) {
+      circle.append("text")
+        .attr("dy", outerRadius - 15)
+        .text(index)
+        .style("font-weight", "bold")
+        .style("font-size", "20px") 
+    } else {
+      circle.append("text")
+        .attr("dy", "12px")
+        .text(index)
+        .style("font-weight", "bold")
+        .style("font-size", "20px")
+      } 
     }
     </script>
 
