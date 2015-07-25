@@ -1,13 +1,24 @@
-﻿<html>
+<html>
 <head>
   <title>Старт</title>
   <meta charset="utf-8">
   <style type="text/css">
-    #questions {
-      position: absolute;
-      top: 10px;
-      left: 20px;
+    #questions {      
       font-size: 150%;
+      text-align: center;
+      position: absolute;
+      top: 57px;
+      left: 400px;    
+      width: 500px; 
+      border: 7px ridge #CD5555;
+      padding: 13px;
+      background: #FFDEAD;
+    }
+    #to-results {      
+      text-align: center;
+      position: absolute;
+      top: 50px;
+      left: 500px;     
     }
     #my_timer {
       position: absolute;
@@ -21,6 +32,10 @@
     }
     b { 
       font-size: 107%; 
+    }
+    body {
+      background: url(RussianMap.png) no-repeat;    
+      background-size: 1370px 700px;
     }
   </style>
   <script type="text/javascript">
@@ -49,8 +64,9 @@
     setTimeout(startTimer, 1000);    
   }
   function Send_time(truth) {
-    document.getElementById('questions').innerHTML +='<input type="hidden" name="answer" value="' + truth + '">';
+    document.getElementById('questions').innerHTML +='<input type="hidden" name="answer" value="' + truth.substr(0, truth.indexOf(":")) + '">';
     document.getElementById('questions').innerHTML += '<input type="hidden" name="used_time" value="' + used_time +'">';
+    document.getElementById('choice'+truth.substr(truth.indexOf(":") + 1)).checked="checked";
   }
   </script>
 </head>
@@ -109,22 +125,25 @@
     echo "<b>".$text[$quest]." </b><br> \n"; // Название вопроса
     $true_ans = rand(1, 4);
     for ($idx2 = 1; $idx2 < 5; $idx2++) {
-      $value_of_truth = "false";
+      $value_of_truth = "false".":".$idx2;
       if ($idx2 == $true_ans) {
-        $value_of_truth = "true";
+        $value_of_truth = "true".":".$idx2;
         $value_of_number = $answer[$quest];
       } else {
         $value_of_number = $answer[rand(1, $id)];
+        while ($value_of_number == $answer[$quest]) {
+          $value_of_number = $answer[rand(1, $id)];
         }
-      echo '<input type="radio" onclick=Send_time("'.$value_of_truth.'")>'.$value_of_number.' <br>';
+      }
+      echo '<input type="radio" id="choice'.$idx2.'" onclick=Send_time("'.$value_of_truth.'")><label for="choice'.$idx2.'">'.$value_of_number.'руб. </label><br>';
     }
     echo '<input type="hidden" name="count" value="'.$count.'">';
     echo '<input type="hidden" name="idx" value="'.$idx.'">';
     echo '<input type="hidden" name="all_used_time" value="'.$all_used_time.'">';
     echo '<input type="submit" style="font-size: 107%; color: #CD5555" value="Подтвердите свой выбор"> </form>'; 
   } else {
-    echo '<h1>Кликните на картинку, чтобы посмотреть результаты<h1>';
-    echo '<a href="result.php?count='.$count.'&all_used_time='.$all_used_time.'" ><img src="start.jpg" width="70%" height="80%"></a>';
+    header("Refresh: 0; URL=result.php?count=$count&all_used_time=$all_used_time");
+    exit;
     }
 ?>
 </body>

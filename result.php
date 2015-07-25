@@ -8,16 +8,19 @@
       top: 50px;
       left: 200px;
     }
+    b { 
+      font-size: 107%; 
+    }
   </style>
 </head>
 <body bgcolor="#FFDEAD">
 <?php
-  echo 'Количество правильных ответов: ';
+  echo '<b>Количество правильных ответов: ';
   $count = $_GET['count'];
-  echo $count.' , ';
+  echo $count.', ';
   $all_used_time = $_GET['all_used_time'];
-  echo 'Время (в секундах): ';
-  echo $all_used_time; 
+  echo 'время (в секундах): ';
+  echo $all_used_time.'</b>'; 
 ?>
   <script src="http://d3js.org/d3.v3.min.js"></script>
   <svg width="600" height="600"></svg>
@@ -63,6 +66,7 @@
         .style("font-size", "20px")
       } 
     }
+     
     </script>
 
 <br><br><a href="start.php">Ещё разок?</a>
